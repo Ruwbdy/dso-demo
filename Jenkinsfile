@@ -42,7 +42,7 @@ pipeline {
               //}
            //}
         //}
-        stage('OSS-License-Checker') {
+        stage('OSS License Checker') {
           steps {
               container('licensefinder') {
                   sh 'ls -al'
