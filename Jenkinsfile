@@ -27,7 +27,7 @@ pipeline {
             }
           }
         }
-        stage('SCA') {
+        stage('S-C-A') {
           steps {
               container('maven') {
                   catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -62,7 +62,6 @@ pipeline {
          }
       }
     }
-
     stage('Deploy to Dev') {
       steps {
         // TODO
