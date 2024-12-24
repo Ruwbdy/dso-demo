@@ -101,6 +101,25 @@ pipeline {
          }
       }
     }
+    stage('Image Analysis') {
+    parallel {
+        stage('Image Linting') {
+            steps {
+                container('docker-tools') {
+                    sh 'dockle docker.io/ruwbdy/dso-demo'
+                }
+            }
+        }
+        stage('Image Scan') {
+            steps {
+                container('docker-tools') {
+                    sh 'trivy image --timeout 10m --exit-code 1 ruwbdy/dso-demo'
+                }
+            }
+        }
+    }
+}
+
     stage('Deploy to Dev') {
       steps {
         // TODO
